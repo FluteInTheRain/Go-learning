@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{.Title}}</title>
+</head>
+
+<body>
+    <h1>{{.Title}}</h1>
+    {{if .Products}}
+    <ul>
+        {{range .Products}}
+        <li>{{.Name}} - {{.Price}} đồng</li>
+        {{end}}
+    </ul>
+    {{else}}
+    <p>Chưa có sản phẩm nào.</p>
+    {{end}}
+</body>
+
+</html>

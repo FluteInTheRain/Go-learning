@@ -1,0 +1,21 @@
+{{define "layout"}}
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{.Title}}</title>
+</head>
+
+<body>
+    <header>
+        <h1>Website Go 🚀</h1>
+    </header>
+    <main>{{template "content" .}}</main>
+    <footer>
+        <p>© 2026 Go Web</p>
+    </footer>
+</body>
+
+</html>
+{{end}}
