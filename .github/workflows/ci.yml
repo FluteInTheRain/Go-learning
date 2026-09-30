@@ -1,0 +1,44 @@
+name: Go CI - Lesson03
+
+# Trigger: run on push to main and on every pull request (only for Lesson03)
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'week07/Lesson03/**'
+      - '.github/workflows/ci.yml'
+  pull_request:
+    paths:
+      - 'week07/Lesson03/**'
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: pull the repository code onto the runner
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: install the Go toolchain
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.27'
+
+      # Step 3: download dependencies
+      - name: Download modules
+        run: |
+          cd week07/Lesson03
+          go mod download
+
+      # Step 4: run tests for Lesson03
+      - name: Test Lesson03
+        run: |
+          cd week07/Lesson03
+          go test -v -race -coverprofile=coverage.out ./...
+
+      # Step 5: display coverage report
+      - name: Display coverage
+        run: |
+          cd week07/Lesson03
+          go tool cover -func=coverage.out
